@@ -92,10 +92,7 @@ stage('Verify Files') {
                         export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                         export ARM_TENANT_ID=$AZURE_TENANT_ID
                         
-                        terraform plan \
-                            -input=false 
-                           -out=tfplan
-                        
+                        terraform plan -input=false -out=tfplan
                         terraform show -no-color tfplan > tfplan.txt
                         '''
                     }
