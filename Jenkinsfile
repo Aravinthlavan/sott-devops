@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         // Reference your Azure Service Principal credentials from Jenkins
-        AZURE_CREDENTIALS_ID = 'f6134b86-c48d-4a1b-9339-04a10f248904' // Match the ID you used when creating credentials
+        AZURE_CREDENTIALS_ID = 'az-sp' // Match the ID you used when creating credentials
         
         // Azure Terraform Backend Configuration
         TF_STATE_RESOURCE_GROUP = "Dev-RG"
