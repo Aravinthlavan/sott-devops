@@ -115,7 +115,7 @@ stage('Verify Files') {
         
         stage('Terraform Apply') {
             steps {
-                 {
+                dir('terraform') {
                     withCredentials([azureServicePrincipal(AZURE_CREDENTIALS_ID)]) {
                         sh '''
                         export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
@@ -123,7 +123,7 @@ stage('Verify Files') {
                         export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                         export ARM_TENANT_ID=$AZURE_TENANT_ID
                         
-                        terraform apply -input=false -auto-approve tfplan
+                        terraform apply -input=false -auto-approve
                         '''
                     }
                 }
