@@ -44,7 +44,7 @@ stage('Verify Files') {
         echo "Current directory: $(pwd)"
         ls -la
         mkdir terraform
-        cp * terraform/
+        cp *.tf terraform/
         cd terraform
         pwd
         ls -al
