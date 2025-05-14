@@ -80,17 +80,17 @@ pipeline {
                         
                         terraform plan \
                             -var "location=${LOCATION}" \
-                            -input=false \
-                            -out=tfplan
+                            -input=false 
+#//                            -out=tfplan
                         
                         terraform show -no-color tfplan > tfplan.txt
                         '''
                     }
-                    archiveArtifacts artifacts: 'terraform/tfplan', onlyIfSuccessful: true
-                    archiveArtifacts artifacts: 'terraform/tfplan.txt', onlyIfSuccessful: true
+//                    archiveArtifacts artifacts: 'terraform/tfplan', onlyIfSuccessful: true
+//                    archiveArtifacts artifacts: 'terraform/tfplan.txt', onlyIfSuccessful: true
                     
                     // Optional: Publish plan output
-                    sh 'cat tfplan.txt'
+//                    sh 'cat tfplan.txt'
                 }
             }
         }
