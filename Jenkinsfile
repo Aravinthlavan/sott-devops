@@ -105,9 +105,9 @@ stage('Verify Files') {
             }
         }
         
-post {
-    always {
-        archiveArtifacts artifacts: 'terraform/tfplan', allowEmptyArchive: true
+      post {
+         always {
+            archiveArtifacts artifacts: 'terraform/tfplan', allowEmptyArchive: true
         // Or if it's in a different directory:
         // archiveArtifacts artifacts: '**/tfplan', allowEmptyArchive: true
     }
