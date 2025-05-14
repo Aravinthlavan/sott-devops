@@ -96,6 +96,13 @@ stage('Verify Files') {
                         terraform show -no-color tfplan > tfplan.txt
                         '''
                     }
+                  post {
+         always {
+            archiveArtifacts artifacts: 'terraform/tfplan', allowEmptyArchive: true
+        // Or if it's in a different directory:
+        // archiveArtifacts artifacts: '**/tfplan', allowEmptyArchive: true
+    }
+}        
                     archiveArtifacts artifacts: 'terraform/tfplan', onlyIfSuccessful: true
                     archiveArtifacts artifacts: 'terraform/tfplan.txt', onlyIfSuccessful: true
                     
@@ -104,14 +111,7 @@ stage('Verify Files') {
                 }
             }
         }
-        
-      post {
-         always {
-            archiveArtifacts artifacts: 'terraform/tfplan', allowEmptyArchive: true
-        // Or if it's in a different directory:
-        // archiveArtifacts artifacts: '**/tfplan', allowEmptyArchive: true
-    }
-}        
+
         stage('Manual Approval') {
             steps {
                timeout(time: 1, unit: 'HOURS') {
