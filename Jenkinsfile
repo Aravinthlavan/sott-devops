@@ -93,7 +93,6 @@ stage('Verify Files') {
                         export ARM_TENANT_ID=$AZURE_TENANT_ID
                         
                         terraform plan \
-                            -var "location=${LOCATION}" \
                             -input=false 
                            -out=tfplan
                         
