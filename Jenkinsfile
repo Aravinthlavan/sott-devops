@@ -21,7 +21,20 @@ pipeline {
                 checkout scm
             }
         }
-        
+
+stage('Install Azure CLI') {
+    steps {
+        script {
+            sh '''
+                # Install Azure CLI on MacOS
+                brew update && brew install azure-cli
+                
+                # Verify installation
+                az --version || { echo "Azure CLI installation failed"; exit 1; }
+            '''
+        }
+    }
+}
           stage('Azure Login') {
             steps {
                 // Authenticate using the Azure Service Principal
