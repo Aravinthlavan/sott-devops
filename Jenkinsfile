@@ -122,8 +122,9 @@ stage('Verify Files') {
                         export ARM_CLIENT_ID=$AZURE_CLIENT_ID
                         export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                         export ARM_TENANT_ID=$AZURE_TENANT_ID
-                        
-                        terraform apply -input=false -auto-approve
+                        pwd
+                        ls -al
+                        terraform apply -input=false -auto-approve tfplan
                         '''
                     }
                 }
