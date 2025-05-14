@@ -37,7 +37,26 @@ pipeline {
                 }
             }
         }
+//# Add this debug stage to your Jenkinsfile
+stage('Verify Files') {
+    steps {
+        sh '''
+        echo "Current directory: $(pwd)"
+        ls -la
+        '''
+    }
+} 
         
+stage('Checkout Terraform Config') {
+    steps {
+        checkout([$class: 'GitSCM', 
+                branches: [[name: '*/main']],
+                extensions: [[$class: 'RelativeTargetDirectory', 
+                            relativeTargetDir: 'terraform']],
+                userRemoteConfigs: [[url: 'https://github.com/BharathKT/sott-devops']]
+        ])
+    }
+}
         stage('Terraform Init') {
             steps {
                 dir('terraform') {
