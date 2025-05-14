@@ -22,6 +22,28 @@ pipeline {
             }
         }
         
+stage('Install Azure CLI') {
+    steps {
+        script {
+            // For Linux agents
+            if (isUnix()) {
+                sh '''
+                    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                    az --version
+                '''
+            }
+            // For Windows agents
+            else {
+                powershell '''
+                    Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
+                    Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
+                    Remove-Item .\AzureCLI.msi
+                    az --version
+                '''
+            }
+        }
+    }
+}        
         stage('Azure Login') {
             steps {
                 // Authenticate using the Azure Service Principal
