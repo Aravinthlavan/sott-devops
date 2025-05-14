@@ -43,6 +43,11 @@ stage('Verify Files') {
         sh '''
         echo "Current directory: $(pwd)"
         ls -la
+        mkdir terraform
+        cp * terraform/
+        cd terraform
+        pwd
+        ls -al
         '''
     }
 } 
