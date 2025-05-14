@@ -115,7 +115,7 @@ stage('Verify Files') {
         
         stage('Terraform Apply') {
             steps {
-                dir('terraform') {
+                 {
                     withCredentials([azureServicePrincipal(AZURE_CREDENTIALS_ID)]) {
                         sh '''
                         export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
