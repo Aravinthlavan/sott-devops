@@ -95,13 +95,13 @@ pipeline {
             }
         }
         
-#        stage('Manual Approval') {
-#            steps {
-#               timeout(time: 1, unit: 'HOURS') {
-#                    input message: 'Review the plan above. Proceed with Terraform Apply?', ok: 'Apply'
-#                }
-#            }
-#        }
+//#        stage('Manual Approval') {
+//#            steps {
+//#               timeout(time: 1, unit: 'HOURS') {
+//#                    input message: 'Review the plan above. Proceed with Terraform Apply?', ok: 'Apply'
+//#                }
+//#            }
+//#        }
         
         stage('Terraform Apply') {
             steps {
