@@ -81,27 +81,27 @@ pipeline {
                         terraform plan \
                             -var "location=${LOCATION}" \
                             -input=false 
-#//                            -out=tfplan
+                           -out=tfplan
                         
                         terraform show -no-color tfplan > tfplan.txt
                         '''
                     }
-//                    archiveArtifacts artifacts: 'terraform/tfplan', onlyIfSuccessful: true
-//                    archiveArtifacts artifacts: 'terraform/tfplan.txt', onlyIfSuccessful: true
+                    archiveArtifacts artifacts: 'terraform/tfplan', onlyIfSuccessful: true
+                    archiveArtifacts artifacts: 'terraform/tfplan.txt', onlyIfSuccessful: true
                     
                     // Optional: Publish plan output
-//                    sh 'cat tfplan.txt'
+                    sh 'cat tfplan.txt'
                 }
             }
         }
         
-//#        stage('Manual Approval') {
-//#            steps {
-//#               timeout(time: 1, unit: 'HOURS') {
-//#                    input message: 'Review the plan above. Proceed with Terraform Apply?', ok: 'Apply'
-//#                }
-//#            }
-//#        }
+        stage('Manual Approval') {
+            steps {
+               timeout(time: 1, unit: 'HOURS') {
+                    input message: 'Review the plan above. Proceed with Terraform Apply?', ok: 'Apply'
+                }
+            }
+        }
         
         stage('Terraform Apply') {
             steps {
