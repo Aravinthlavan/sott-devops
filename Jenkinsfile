@@ -3,17 +3,17 @@ pipeline {
     
     environment {
         // Reference your Azure Service Principal credentials from Jenkins
-        AZURE_CREDENTIALS_ID = 'az-sp' // Match the ID you used when creating credentials
+        AZURE_CREDENTIALS_ID = 'spdevops' // Match the ID you used when creating credentials
         PATH = "/opt/homebrew/bin:$PATH"
         
         // Azure Terraform Backend Configuration
         TF_STATE_RESOURCE_GROUP = "Dev-RG"
         TF_STATE_STORAGE_ACCOUNT = "ttfstatesa"
         TF_STATE_CONTAINER = "tfstate"
-        TF_STATE_KEY = "terraform.tfstate"
+        TF_STATE_KEY = "aravind_terraform.tfstate"
         
         // Environment specific variables (customize as needed)
-        LOCATION = "eastus"
+        LOCATION = "eastus2"
     }
     
     stages {
