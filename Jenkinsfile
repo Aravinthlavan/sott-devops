@@ -124,7 +124,7 @@ stage('Verify Files') {
                         export ARM_TENANT_ID=$AZURE_TENANT_ID
                         pwd
                         ls -al
-                        terraform apply -input=false -auto-approve tfplan
+                        terraform apply -input=false -auto-approve terraform/tfplan
                         '''
                     }
                 }
