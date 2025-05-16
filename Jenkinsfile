@@ -145,7 +145,7 @@ stage('Verify Files') {
         always {
             // Clean up Azure CLI session
             sh 'az logout || true'
-           // cleanWs()
+            cleanWs()
         }
         success {
             echo 'Terraform execution completed successfully'
